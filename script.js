@@ -161,3 +161,90 @@ function setupAutocomplete(inputId, listId) {
 
 setupAutocomplete('input-from', 'suggestions-from');
 setupAutocomplete('input-to', 'suggestions-to');
+
+// Flight Search Logic
+const btnSearch = document.getElementById('btn-search-flights');
+const searchResultsSection = document.getElementById('search-results-section');
+const resultsContainer = document.getElementById('results-container');
+
+if (btnSearch && searchResultsSection && resultsContainer) {
+    btnSearch.addEventListener('click', () => {
+        const fromVal = document.getElementById('input-from').value;
+        const toVal = document.getElementById('input-to').value;
+
+        // Simple validation
+        if (!fromVal || !toVal) {
+            alert("Please select both a departure and arrival city.");
+            return;
+        }
+
+        // Loading State
+        const originalBtnContent = btnSearch.innerHTML;
+        btnSearch.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg> Searching...`;
+        btnSearch.disabled = true;
+
+        // Simulate API delay
+        setTimeout(() => {
+            // Restore Button
+            btnSearch.innerHTML = originalBtnContent;
+            btnSearch.disabled = false;
+
+            // Show Results
+            searchResultsSection.classList.remove('hidden');
+            resultsContainer.innerHTML = ''; // Clear previous
+
+            // Extract City Names
+            const fromCity = fromVal.split('(')[0].trim();
+            const toCity = toVal.split('(')[0].trim();
+
+            // Mock Data Generation
+            const mockFlights = [
+                { time: '08:30', landing: '11:45', duration: '3h 15m', price: 450, type: 'Direct' },
+                { time: '14:15', landing: '17:30', duration: '3h 15m', price: 520, type: 'Direct' },
+                { time: '18:45', landing: '23:10', duration: '4h 25m', price: 380, type: '1 Stop' },
+            ];
+
+            mockFlights.forEach(flight => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6 hover:shadow-md transition-shadow";
+                card.innerHTML = `
+                    <div class="flex items-center gap-6 w-full md:w-auto">
+                        <div class="flex flex-col items-center">
+                            <span class="text-2xl font-bold text-slate-800">${flight.time}</span>
+                            <span class="text-xs text-slate-400">Departure</span>
+                        </div>
+                        <div class="flex flex-col items-center px-4 w-32">
+                            <span class="text-xs text-slate-400 mb-1">${flight.duration}</span>
+                            <div class="w-full h-[2px] bg-slate-200 relative">
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full ring-2 ring-white ${flight.type === 'Direct' ? 'bg-brand-blue' : 'bg-orange-400'}"></div>
+                            </div>
+                            <span class="text-xs text-slate-500 mt-1">${flight.type}</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-2xl font-bold text-slate-800">${flight.landing}</span>
+                            <span class="text-xs text-slate-400">Arrival</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between w-full md:w-auto gap-8 border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+                        <div class="text-right">
+                             <div class="text-xs text-slate-400">Economy starting from</div>
+                             <div class="text-2xl font-bold text-brand-blue">$${flight.price}</div>
+                        </div>
+                        <button class="px-6 py-2.5 bg-slate-900 text-white rounded-xl font-medium hover:bg-brand-blue transition-colors shadow-lg">
+                            Select
+                        </button>
+                    </div>
+                `;
+                resultsContainer.appendChild(card);
+            });
+
+            // Smooth scroll to results
+            searchResultsSection.scrollIntoView({ behavior: 'smooth' });
+
+        }, 1500);
+    });
+}

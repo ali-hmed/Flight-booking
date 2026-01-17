@@ -255,7 +255,7 @@
 
                 <!-- Search Button -->
                 <div class="mt-6 flex justify-end">
-                    <button
+                    <button id="btn-search-flights"
                         class="bg-brand-blue hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-blue-500/30 flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -298,6 +298,23 @@
                         Find Booking
                     </button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section (Hidden by default) -->
+    <section id="search-results-section" class="hidden py-12 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-blue" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                Available Flights
+            </h2>
+            <div id="results-container" class="space-y-4">
+                <!-- JS will populate results here -->
             </div>
         </div>
     </section>
