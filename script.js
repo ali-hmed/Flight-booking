@@ -484,3 +484,69 @@ document.querySelectorAll('.custom-dropdown').forEach(dropdown => {
         closeActiveDropdown();
     }, true);
 });
+
+// Auth Modal Logic
+const authModal = document.getElementById('auth-modal');
+const modalContent = document.getElementById('modal-content');
+const modalBackdrop = document.getElementById('modal-backdrop');
+const closeModalBtn = document.getElementById('close-modal');
+const signupBtnDesktop = document.getElementById('signup-btn-desktop');
+const signupBtnMobile = document.getElementById('signup-btn-mobile');
+const toggleAuth = document.getElementById('toggle-auth');
+const modalTitle = document.getElementById('modal-title');
+const modalSubtitle = document.getElementById('modal-subtitle');
+
+let isLoginMode = false;
+
+function openAuthModal(e) {
+    if (e) e.preventDefault();
+    authModal.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+    authModal.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+    modalContent.classList.remove('scale-95');
+    modalContent.classList.add('scale-100');
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAuthModal() {
+    authModal.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+    authModal.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+    modalContent.classList.add('scale-95');
+    modalContent.classList.remove('scale-100');
+    // Restore body scroll
+    document.body.style.overflow = '';
+}
+
+if (signupBtnDesktop) signupBtnDesktop.addEventListener('click', openAuthModal);
+if (signupBtnMobile) signupBtnMobile.addEventListener('click', openAuthModal);
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeAuthModal);
+if (modalBackdrop) modalBackdrop.addEventListener('click', closeAuthModal);
+
+if (toggleAuth) {
+    toggleAuth.addEventListener('click', (e) => {
+        e.preventDefault();
+        isLoginMode = !isLoginMode;
+
+        const nameFieldContainer = document.getElementById('name-field-container');
+        const submitBtn = document.getElementById('modal-submit-btn');
+        const googleBtnText = document.getElementById('google-btn-text');
+
+        if (isLoginMode) {
+            modalTitle.textContent = "Welcome Back";
+            modalSubtitle.textContent = "Login to your account";
+            nameFieldContainer.classList.add('hidden');
+            submitBtn.textContent = "Log In";
+            googleBtnText.textContent = "Log in with Google";
+            toggleAuth.innerHTML = "Create Account";
+            toggleAuth.parentElement.firstChild.textContent = "Don't have an account? ";
+        } else {
+            modalTitle.textContent = "Create Account";
+            modalSubtitle.textContent = "Start your journey in seconds.";
+            nameFieldContainer.classList.remove('hidden');
+            submitBtn.textContent = "Create Account";
+            googleBtnText.textContent = "Sign up with Google";
+            toggleAuth.innerHTML = "Log In";
+            toggleAuth.parentElement.firstChild.textContent = "Already have an account? ";
+        }
+    });
+}
