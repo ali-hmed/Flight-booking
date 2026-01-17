@@ -107,15 +107,23 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white border-t border-slate-100 absolute w-full" id="mobile-menu">
-            <div class="px-4 py-4 space-y-3">
-                <a href="#" class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Home</a>
+        <!-- Mobile Menu -->
+        <div class="md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 shadow-xl z-40 transform transition-all duration-300 ease-in-out opacity-0 -translate-y-5 invisible pointer-events-none"
+            id="mobile-menu">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#"
+                    class="block px-4 py-3 text-slate-600 font-bold hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors">Home</a>
                 <a href="#flights"
-                    class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Flights</a>
+                    class="block px-4 py-3 text-slate-600 font-bold hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors">Flights</a>
                 <a href="#deals"
-                    class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Deals</a>
+                    class="block px-4 py-3 text-slate-600 font-bold hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors">Deals</a>
                 <a href="#destinations"
-                    class="block px-3 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-lg">Destinations</a>
+                    class="block px-4 py-3 text-slate-600 font-bold hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors">Destinations</a>
+                <div class="pt-4 border-t border-slate-100">
+                    <a href="#"
+                        class="block w-full text-center px-6 py-3 rounded-xl bg-brand-blue text-white font-bold hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/30">Sign
+                        Up</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -144,7 +152,7 @@
             </div>
 
             <!-- Search Widget -->
-            <div class="relative max-w-5xl">
+            <div id="flights" class="relative max-w-5xl">
                 <!-- Custom Tabs -->
                 <div class="inline-flex w-full overflow-x-auto bg-blue-900 rounded-t-2xl p-2 pb-0 gap-2 scrollbar-hide">
                     <button id="tab-flights"
@@ -181,27 +189,85 @@
                     <!-- Flight Search Form -->
                     <div id="flight-search-form">
                         <!-- Trip Type & Class -->
-                        <div class="flex gap-6 mb-8 text-sm font-semibold text-slate-600">
-                            <div class="flex items-center gap-1 cursor-pointer hover:text-slate-900">
-                                Round Trip <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                        <!-- Trip Type & Class -->
+                        <div
+                            class="flex flex-nowrap gap-4 md:gap-8 mb-8 text-sm font-semibold text-slate-600 overflow-x-auto scrollbar-hide items-center z-50">
+                            <!-- Custom Select: Trip Type -->
+                            <div class="relative custom-dropdown group">
+                                <button
+                                    class="dropdown-btn flex items-center gap-2 font-semibold text-slate-600 hover:text-slate-900 transition-colors outline-none shrink-0">
+                                    <span class="selected-value">Round Trip</span>
+                                    <svg class="w-4 h-4 text-slate-400 transition-transform duration-300" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="dropdown-menu absolute top-full left-0 mt-3 w-40 bg-white rounded-xl shadow-2xl border border-slate-100 p-2 opacity-0 invisible transform translate-y-2 transition-all duration-200 z-[60]">
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        Round Trip</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        One Way</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        Multi-city</div>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-1 cursor-pointer hover:text-slate-900">
-                                02 Passengers <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
+
+                            <!-- Custom Select: Passengers -->
+                            <div class="relative custom-dropdown group">
+                                <button
+                                    class="dropdown-btn flex items-center gap-2 font-semibold text-slate-600 hover:text-slate-900 transition-colors outline-none shrink-0">
+                                    <span class="selected-value">2 Passengers</span>
+                                    <svg class="w-4 h-4 text-slate-400 transition-transform duration-300" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="dropdown-menu absolute top-full left-0 mt-3 w-40 bg-white rounded-xl shadow-2xl border border-slate-100 p-2 opacity-0 invisible transform translate-y-2 transition-all duration-200 z-[60]">
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        1 Passenger</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        2 Passengers</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        3 Passengers</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        4 Passengers</div>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-1 cursor-pointer hover:text-slate-900">
-                                Business Class <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
+
+                            <!-- Custom Select: Class -->
+                            <div class="relative custom-dropdown group">
+                                <button
+                                    class="dropdown-btn flex items-center gap-2 font-semibold text-slate-600 hover:text-slate-900 transition-colors outline-none shrink-0">
+                                    <span class="selected-value">Business Class</span>
+                                    <svg class="w-4 h-4 text-slate-400 transition-transform duration-300" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="dropdown-menu absolute top-full left-0 mt-3 w-48 bg-white rounded-xl shadow-2xl border border-slate-100 p-2 opacity-0 invisible transform translate-y-2 transition-all duration-200 z-[60]">
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        Economy</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        Business Class</div>
+                                    <div
+                                        class="dropdown-item px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-brand-blue cursor-pointer transition-colors text-slate-700 font-medium text-sm">
+                                        First Class</div>
+                                </div>
                             </div>
                         </div>
 
@@ -301,7 +367,7 @@
                         </div>
                         <!-- Search Button -->
                         <div class="mt-8 lg:absolute lg:mt-0 lg:-bottom-6 lg:right-8">
-                            <button
+                            <button id="btn-search-hotels"
                                 class="w-full lg:w-auto justify-center bg-brand-blue text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-600 transition-all shadow-xl shadow-blue-500/30 flex items-center gap-3">
                                 Search Hotels
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -341,7 +407,7 @@
                         </div>
                         <!-- Search Button -->
                         <div class="mt-8 lg:absolute lg:mt-0 lg:-bottom-6 lg:right-8">
-                            <button
+                            <button id="btn-search-cars"
                                 class="w-full lg:w-auto justify-center bg-brand-blue text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-600 transition-all shadow-xl shadow-blue-500/30 flex items-center gap-3">
                                 Search Cars
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -569,7 +635,7 @@
     </section>
 
     <!-- About Us Feature -->
-    <section class="py-24 bg-white relative overflow-hidden">
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1">
