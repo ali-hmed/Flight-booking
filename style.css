@@ -7,8 +7,10 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Custom Selection Color */
@@ -20,4 +22,28 @@
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+@keyframes flight-path {
+    0% {
+        transform: translateX(-120%) rotate(90deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%) rotate(90deg);
+        opacity: 0;
+    }
+}
+
+.animate-flight-path {
+    animation: flight-path 8s linear infinite;
 }

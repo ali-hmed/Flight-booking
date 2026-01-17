@@ -35,35 +35,66 @@ if (destinationsContainer && prevBtn && nextBtn) {
 }
 
 // Search & Manage Booking Tabs
-const tabFlights = document.getElementById('tab-flights');
-const tabManage = document.getElementById('tab-manage');
-const formFlights = document.getElementById('flight-search-form');
-const formManage = document.getElementById('manage-booking-form');
+// Search Tabs Logic (Flights, Hotels, Cars)
+const tabs = {
+    flights: document.getElementById('tab-flights'),
+    hotels: document.getElementById('tab-hotels'),
+    cars: document.getElementById('tab-cars')
+};
 
-if (tabFlights && tabManage && formFlights && formManage) {
-    tabFlights.addEventListener('click', () => {
-        // Activate Flights
-        tabFlights.classList.add('text-brand-blue', 'border-brand-blue');
-        tabFlights.classList.remove('text-slate-500', 'border-transparent'); // ensure no transparent border overrides if added later
+const forms = {
+    flights: document.getElementById('flight-search-form'),
+    hotels: document.getElementById('hotel-search-form'),
+    cars: document.getElementById('car-search-form')
+};
 
-        tabManage.classList.remove('text-brand-blue', 'border-brand-blue', 'border-b-2');
-        tabManage.classList.add('text-slate-500');
-
-        formFlights.classList.remove('hidden');
-        formManage.classList.add('hidden');
+function setActiveTab(activeType) {
+    // Reset all tabs
+    Object.values(tabs).forEach(tab => {
+        if (tab) {
+            tab.classList.remove('bg-white', 'text-slate-900', 'font-bold');
+            tab.classList.add('text-white/70', 'hover:text-white', 'font-medium');
+        }
     });
 
-    tabManage.addEventListener('click', () => {
-        // Activate Manage
-        tabManage.classList.add('text-brand-blue', 'border-brand-blue', 'border-b-2');
-        tabManage.classList.remove('text-slate-500');
-
-        tabFlights.classList.remove('text-brand-blue', 'border-brand-blue');
-        tabFlights.classList.add('text-slate-500');
-
-        formManage.classList.remove('hidden');
-        formFlights.classList.add('hidden');
+    // Hide all forms
+    Object.values(forms).forEach(form => {
+        if (form) form.classList.add('hidden');
     });
+
+    // Activate selected
+    if (tabs[activeType] && forms[activeType]) {
+        tabs[activeType].classList.add('bg-white', 'text-brand-blue', 'font-bold');
+        tabs[activeType].classList.remove('text-white/70', 'hover:text-white', 'font-medium');
+        forms[activeType].classList.remove('hidden');
+    }
+}
+
+// Event Listeners
+if (tabs.flights) tabs.flights.addEventListener('click', () => setActiveTab('flights'));
+if (tabs.hotels) tabs.hotels.addEventListener('click', () => setActiveTab('hotels'));
+if (tabs.cars) tabs.cars.addEventListener('click', () => setActiveTab('cars'));
+
+// Hero Background Slider
+const heroSection = document.getElementById('hero-section');
+const heroImages = [
+    'assets/hero_bg_new.jpg',
+    'assets/hero_bg_2.jpg',
+    'assets/hero_bg_3.jpg'
+];
+let currentHeroIndex = 0;
+
+if (heroSection) {
+    // Preload images
+    heroImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
+    setInterval(() => {
+        currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+        heroSection.style.backgroundImage = `url('${heroImages[currentHeroIndex]}')`;
+    }, 5000);
 }
 
 // City Search Autocomplete
