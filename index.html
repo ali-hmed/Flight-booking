@@ -39,8 +39,8 @@
                     },
                     keyframes: {
                         float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                            '0%, 100%': { transform: 'translateY(0) scaleX(-1)' },
+                            '50%': { transform: 'translateY(-20px) scaleX(-1)' },
                         },
                         fadeInUp: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -181,6 +181,15 @@
                                 d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                         </svg>
                         Rent a Car
+                    </button>
+                    <button id="tab-manage"
+                        class="px-6 py-3 text-white/70 hover:text-white font-medium flex items-center gap-2 text-sm transition-all h-12">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        Manage Booking
                     </button>
                 </div>
 
@@ -418,11 +427,34 @@
                             </button>
                         </div>
                     </div>
-                    <!-- Manage Booking Form (Simple placeholder for logic compatibility) -->
-                    <div id="manage-booking-form" class="hidden py-8">
-                        <div class="text-center text-slate-500">
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Find Your Booking</h3>
-                            <p>Please enter your booking reference to manage your trip.</p>
+                    <!-- Manage Booking Form -->
+                    <div id="manage-booking-form" class="hidden">
+                        <div
+                            class="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-slate-200 rounded-2xl divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+                            <div class="p-6 bg-white hover:bg-slate-50 transition-colors">
+                                <label class="block text-xs font-bold text-slate-400 tracking-wider mb-1">BOOKING
+                                    REFERENCE</label>
+                                <input type="text" placeholder="e.g. SA123456"
+                                    class="w-full text-2xl font-bold text-slate-900 outline-none bg-transparent placeholder:text-slate-300">
+                            </div>
+                            <div class="p-6 bg-white hover:bg-slate-50 transition-colors">
+                                <label class="block text-xs font-bold text-slate-400 tracking-wider mb-1">LAST
+                                    NAME</label>
+                                <input type="text" placeholder="As seen on passport"
+                                    class="w-full text-2xl font-bold text-slate-900 outline-none bg-transparent placeholder:text-slate-300">
+                            </div>
+                        </div>
+                        <!-- Search Button -->
+                        <div class="mt-8 lg:absolute lg:mt-0 lg:-bottom-6 lg:right-8">
+                            <button id="btn-manage-booking"
+                                class="w-full lg:w-auto justify-center bg-brand-blue text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-600 transition-all shadow-xl shadow-blue-500/30 flex items-center gap-3">
+                                Manage My Trip
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -701,15 +733,11 @@
             </p>
 
             <!-- Animated Plane Container -->
-            <div class="relative w-full h-32 flex justify-center items-center overflow-hidden">
+            <div class="relative w-full h-48 flex justify-center items-center overflow-hidden">
                 <div class="absolute w-[200%] h-[1px] bg-white/20 top-1/2 left-1/2 -translate-x-1/2"></div>
                 <!-- Moving Plane -->
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="w-16 h-16 text-white rotate-90 animate-flight-path drop-shadow-lg" fill="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
-                </svg>
+                <img src="assets/somali_plane_footer.png" alt="Flying Plane"
+                    class="w-64 md:w-80 h-auto object-contain animate-flight-path-flat drop-shadow-2xl scale-x-[-1]">
             </div>
 
             <button
@@ -779,13 +807,9 @@
                     </ul>
                 </div>
 
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-6">Support</h4>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-brand-blue transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-brand-blue transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-brand-blue transition-colors">Privacy Policy</a></li>
-                    </ul>
+                <div class="col-span-2 lg:col-span-1 flex items-center justify-center">
+                    <img src="assets/somali_plane_footer.png" alt="Somali Airlines Plane"
+                        class="w-full max-w-xs lg:max-w-[200px] h-auto object-contain animate-float drop-shadow-2xl scale-x-[-1]">
                 </div>
             </div>
             <div class="border-t border-slate-100 pt-8 text-center text-slate-400 text-sm">

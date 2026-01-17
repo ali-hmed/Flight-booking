@@ -58,13 +58,15 @@ if (destinationsContainer && prevBtn && nextBtn) {
 const tabs = {
     flights: document.getElementById('tab-flights'),
     hotels: document.getElementById('tab-hotels'),
-    cars: document.getElementById('tab-cars')
+    cars: document.getElementById('tab-cars'),
+    manage: document.getElementById('tab-manage')
 };
 
 const forms = {
     flights: document.getElementById('flight-search-form'),
     hotels: document.getElementById('hotel-search-form'),
-    cars: document.getElementById('car-search-form')
+    cars: document.getElementById('car-search-form'),
+    manage: document.getElementById('manage-booking-form')
 };
 
 function setActiveTab(activeType) {
@@ -93,6 +95,7 @@ function setActiveTab(activeType) {
 if (tabs.flights) tabs.flights.addEventListener('click', () => setActiveTab('flights'));
 if (tabs.hotels) tabs.hotels.addEventListener('click', () => setActiveTab('hotels'));
 if (tabs.cars) tabs.cars.addEventListener('click', () => setActiveTab('cars'));
+if (tabs.manage) tabs.manage.addEventListener('click', () => setActiveTab('manage'));
 
 // Hero Background Slider
 const heroSection = document.getElementById('hero-section');
@@ -216,6 +219,7 @@ setupAutocomplete('input-to', 'suggestions-to');
 const btnSearch = document.getElementById('btn-search-flights');
 const btnSearchHotels = document.getElementById('btn-search-hotels');
 const btnSearchCars = document.getElementById('btn-search-cars');
+const btnManageBooking = document.getElementById('btn-manage-booking');
 
 const searchResultsSection = document.getElementById('search-results-section');
 const resultsContainer = document.getElementById('results-container');
@@ -339,6 +343,52 @@ const handleSearch = (btn, type) => {
                         </div>
                     </div>
                 `).join('') + `</div>`;
+            } else if (type === 'manage') {
+                html = `
+                    <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 max-w-2xl mx-auto">
+                        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                            <div>
+                                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Booking Status</span>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
+                                    <span class="font-bold text-slate-900 uppercase">Confirmed</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Reference</span>
+                                <div class="text-xl font-black text-brand-blue mt-1">SA-882910</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8 mb-8">
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase">Passenger</div>
+                                    <div class="font-bold text-slate-900">MR. MOHAMED ABDULLAHI</div>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase">Flight</div>
+                                    <div class="font-bold text-slate-900">SA-102 (Boeing 737)</div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase">Date</div>
+                                    <div class="font-bold text-slate-900">24 JAN 2026</div>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-bold uppercase">Seat</div>
+                                    <div class="font-bold text-slate-900 text-brand-blue">12A (Window)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-4 pt-6 border-t border-slate-100">
+                             <button class="flex-1 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all">Download Ticket</button>
+                             <button class="flex-1 px-6 py-3 bg-brand-blue text-white rounded-xl font-bold hover:bg-blue-600 shadow-lg shadow-blue-500/20 transition-all">Check-in Online</button>
+                        </div>
+                    </div>
+                `;
             }
 
             showResults(html);
@@ -350,6 +400,7 @@ const handleSearch = (btn, type) => {
 handleSearch(btnSearch, 'flight');
 handleSearch(btnSearchHotels, 'hotel');
 handleSearch(btnSearchCars, 'car');
+handleSearch(btnManageBooking, 'manage');
 
 // Custom Dropdown Logic (Fixed Position Portal)
 document.querySelectorAll('.custom-dropdown').forEach(dropdown => {
