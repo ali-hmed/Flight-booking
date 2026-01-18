@@ -100,10 +100,10 @@ if (tabs.manage) tabs.manage.addEventListener('click', () => setActiveTab('manag
 // Hero Background Slider
 const heroSection = document.getElementById('hero-section');
 const heroImages = [
-    'https://i.pinimg.com/1200x/76/b1/fe/76b1fe4afc072c4ea2067e9a94602443.jpg',
-    'https://i.pinimg.com/736x/2c/37/36/2c37364c46c8e350300c1da07d83cbcc.jpg',
-    'https://i.pinimg.com/1200x/e1/0f/fd/e10ffd431937157cf3b913847cd49f49.jpg',
-    'https://i.pinimg.com/1200x/1e/9c/8e/1e9c8e29a4852707833526972495b092.jpg'
+    'assets/hero_bg_new.jpg',
+    'assets/hero_bg_2.jpg',
+    'assets/hero_bg_3.jpg',
+    'somali_airlines_hero.png'
 ];
 let currentHeroIndex = 0;
 
