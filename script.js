@@ -73,7 +73,7 @@ function setActiveTab(activeType) {
     // Reset all tabs
     Object.values(tabs).forEach(tab => {
         if (tab) {
-            tab.classList.remove('bg-white', 'text-slate-900', 'font-bold');
+            tab.classList.remove('bg-white', 'text-brand-blue', 'font-bold', 'shadow-lg');
             tab.classList.add('text-white/70', 'hover:text-white', 'font-medium');
         }
     });
@@ -85,7 +85,7 @@ function setActiveTab(activeType) {
 
     // Activate selected
     if (tabs[activeType] && forms[activeType]) {
-        tabs[activeType].classList.add('bg-white', 'text-brand-blue', 'font-bold');
+        tabs[activeType].classList.add('bg-white', 'text-brand-blue', 'font-bold', 'shadow-lg');
         tabs[activeType].classList.remove('text-white/70', 'hover:text-white', 'font-medium');
         forms[activeType].classList.remove('hidden');
     }
@@ -105,7 +105,7 @@ const heroImages = [
     'https://i.pinimg.com/1200x/6e/dd/62/6edd62a31d28f88f8221d4003cb3331a.jpg',
     'https://i.pinimg.com/1200x/dd/4a/80/dd4a80e669f188458512f94913d69096.jpg',
     'https://i.pinimg.com/1200x/da/94/71/da9471945e9f4cbe4c45b3c161dd60cd.jpg'
-    
+
 ];
 let currentHeroIndex = 0;
 
