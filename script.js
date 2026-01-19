@@ -1,13 +1,46 @@
 // Navbar Scroll Effect
 const navbar = document.getElementById('navbar');
+const navLogo = document.getElementById('nav-logo');
+const navLinks = document.querySelectorAll('.nav-link');
+const navSearchIcon = document.getElementById('nav-search-icon');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.classList.add('shadow-glass', 'bg-white/90');
-        navbar.classList.remove('bg-white/80', 'border-white/20');
+        // Scrolled - solid white background with dark text
+        navbar.classList.add('shadow-glass', 'bg-white/95', 'backdrop-blur-md', 'border-white/20');
+        navbar.classList.remove('bg-transparent', 'border-transparent');
+
+        // Change text to dark
+        if (navLogo) {
+            navLogo.classList.remove('text-white');
+            navLogo.classList.add('text-slate-800');
+        }
+        navLinks.forEach(link => {
+            link.classList.remove('text-white');
+            link.classList.add('text-slate-600');
+        });
+        if (navSearchIcon) {
+            navSearchIcon.classList.remove('text-white/80');
+            navSearchIcon.classList.add('text-slate-400');
+        }
     } else {
-        navbar.classList.remove('shadow-glass', 'bg-white/90');
-        navbar.classList.add('bg-white/80', 'border-white/20');
+        // At top - transparent background with white text
+        navbar.classList.remove('shadow-glass', 'bg-white/95', 'backdrop-blur-md', 'border-white/20');
+        navbar.classList.add('bg-transparent', 'border-transparent');
+
+        // Change text to white
+        if (navLogo) {
+            navLogo.classList.remove('text-slate-800');
+            navLogo.classList.add('text-white');
+        }
+        navLinks.forEach(link => {
+            link.classList.remove('text-slate-600');
+            link.classList.add('text-white');
+        });
+        if (navSearchIcon) {
+            navSearchIcon.classList.remove('text-slate-400');
+            navSearchIcon.classList.add('text-white/80');
+        }
     }
 });
 
