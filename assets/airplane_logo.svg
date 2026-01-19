@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Refined airplane logo based on uploaded image -->
+  <!-- Main body and wings -->
+  <path d="M 120 280 Q 140 275 180 285 L 240 295 Q 320 260 420 165 Q 480 110 500 85 Q 510 75 505 80 Q 490 95 460 130 Q 440 150 410 185 L 380 220 Q 360 240 340 260 L 380 280 Q 420 295 450 310 Q 460 315 455 318 Q 440 320 400 315 L 340 305 Q 345 330 370 355 Q 390 375 410 390 Q 415 395 410 395 Q 390 390 360 370 Q 330 350 310 325 L 280 340 Q 240 360 200 370 Q 160 378 120 380 Q 100 380 95 378 Q 90 375 95 370 Q 110 360 140 345 Q 170 330 200 320 L 180 305 Q 140 290 120 285 Q 100 280 95 278 Q 90 275 95 272 Q 105 270 120 280 Z" fill="#4189DD" stroke="none"/>
+  
+  <!-- White accent stripe (optional, for depth) -->
+  <path d="M 310 240 Q 340 220 370 195 L 385 210 Q 410 240 420 260 L 390 275 Q 360 265 330 255 L 310 240 Z" fill="#FFFFFF" opacity="0.3"/>
+</svg>
